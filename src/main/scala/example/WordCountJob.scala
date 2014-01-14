@@ -5,10 +5,10 @@ import org.apache.hadoop.util.ToolRunner
 import org.apache.hadoop.conf.Configuration
 
 class WordCountJob(args : Args) extends Job(args) {
-  TextLine( args("input") )
+  TextLine(args("input"))
     .flatMap('line -> 'word) { line : String => tokenize(line) }
     .groupBy('word) { _.size }
-    .write( Tsv( args("output") ) )
+    .write(Tsv(args("output")))
 
   // Split a piece of text into individual words.
   def tokenize(text : String) : Array[String] = {
